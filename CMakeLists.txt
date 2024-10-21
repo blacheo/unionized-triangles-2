@@ -20,8 +20,13 @@ project(intersection)
 
 add_executable(
 	tests
-	tests/simple_triangle_tests.cpp
+	tests/unit_tests/simple_triangle_tests.cpp
+	src/intersections/intersections.cpp
+	src/shapes/triangle.cpp
+	src/shapes/triangle_edges.cpp
 )
+
+include_directories(src)
 
 target_link_libraries(
 	tests
