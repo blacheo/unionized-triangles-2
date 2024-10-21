@@ -3,7 +3,7 @@
 
 // points specified clockwise
 struct Triangle {
-	Point p1, p2, p3;
+	Point points[3];
 	int depth;
 	bool neighbours(Triangle &other);
 	Triangle(Point p1, Point p2, Point p3, int depth);
