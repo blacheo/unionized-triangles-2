@@ -24,6 +24,8 @@ add_executable(
 	src/intersections/intersections.cpp
 	src/shapes/triangle.cpp
 	src/shapes/triangle_edges.cpp
+	src/contourize/contourize.cpp
+	src/shapes/edge.cpp
 )
 
 include_directories(src)

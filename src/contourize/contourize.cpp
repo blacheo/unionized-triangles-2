@@ -1,23 +1,31 @@
 #include <shapes/triangle.h>
-#include <shapes/edge.h>
-#include <shapes/triangle_edges.h>
 #include <vector>
+#include "contourize.h"
 
-bool positiveSide(Edge e, Point p) {
-    float h = e.p1.y - e.p2.y;
-    float g = e.p1.x - e.p2.x; 
-    return -h * (p.x - e.p1.x) + g * (p.y - e.p1.y) >= 0;
+std::vector<Point> sortPoints(std::vector<Point> &points) {
+
 }
 
-bool pointInTriangle(Point p, Triangle t) {
-    // all tests must be positive
-    auto edges = TriangleEdges(t);
 
-    return positiveSide(edges.e1, p) &&
-    positiveSide(edges.e2, p) &&
-    positiveSide(edges.e3, p);
-}
 
-void contourize(Triangle t1, Triangle t2, std::vector<Point> newIntersections) {
 
+std::vector<Point> contourize(const Triangle &t1, const Triangle &t2, const std::vector<Point> &newIntersections) {
+    std::vector<Point> result;
+    // Go through each event point.
+    // If an even point is in a triangle, it is not part of the final Triangle
+    for (auto &p : t1.points) {
+        if (!t2.pointInTriangle(p)) {
+            result.push_back(p);
+        }
+    }
+
+    for (auto &p : t2.points) {
+        if (!t2.pointInTriangle(p)) {
+            result.push_back(p);
+        }
+    }
+
+    result.insert(result.end(), newIntersections.begin(), newIntersections.end());
+
+    return result;
 }
