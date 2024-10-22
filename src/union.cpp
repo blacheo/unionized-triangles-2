@@ -2,10 +2,8 @@
 #include <vector>
 #include <optional>
 #include <intersections/intersections.h>
-
-std::vector<Point> contourize(std::vector<Point> points) {
-
-}
+#include <contourize/contourize.h>
+#include <triangulation/triangulation.h>
 
 std::vector<Triangle> unionize(Triangle t1, Triangle t2) {
 
@@ -22,7 +20,7 @@ std::vector<Triangle> unionize(Triangle t1, Triangle t2) {
 		return std::vector{t1, t2};
 	}
 
-	std::vector<Point> contour = contourize();
+	std::vector<Point> contour = contourize(t1, t2, newIntersections);
 
 	return triangulate(contour);
 }
