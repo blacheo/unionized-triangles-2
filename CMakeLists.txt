@@ -26,6 +26,9 @@ add_executable(
 	src/shapes/triangle_edges.cpp
 	src/contourize/contourize.cpp
 	src/shapes/edge.cpp
+	src/orientation/orientation.cpp
+	src/shapes/point.cpp
+	src/union.cpp
 )
 
 include_directories(src)
