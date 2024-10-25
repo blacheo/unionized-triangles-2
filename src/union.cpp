@@ -4,8 +4,9 @@
 #include <intersections/intersections.h>
 #include <contourize/contourize.h>
 #include <triangulation/triangulation.h>
+#include <union.h>
 
-std::vector<Triangle> unionize(Triangle t1, Triangle t2) {
+std::vector<Triangle> unionize(const Triangle &t1, const Triangle &t2) {
 
 	// if neighbours, do nothing
 	if (t1.neighbours(t2)) {
@@ -22,7 +23,7 @@ std::vector<Triangle> unionize(Triangle t1, Triangle t2) {
 
 	std::vector<Point> contour = contourize(t1, t2, newIntersections);
 
-	return triangulate(contour);
+	return monotoneTriangulate(contour);
 }
 
 void unionize(Triangle soup) {

@@ -21,6 +21,7 @@ project(intersection)
 add_executable(
 	tests
 	tests/unit_tests/simple_triangle_tests.cpp
+	tests/unit_tests/contourize_tests.cpp
 	src/intersections/intersections.cpp
 	src/shapes/triangle.cpp
 	src/shapes/triangle_edges.cpp
@@ -29,6 +30,7 @@ add_executable(
 	src/orientation/orientation.cpp
 	src/shapes/point.cpp
 	src/union.cpp
+	src/triangulation/triangulation.cpp
 )
 
 include_directories(src)

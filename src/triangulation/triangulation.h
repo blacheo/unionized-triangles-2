@@ -4,4 +4,4 @@
 struct Triangle;
 struct Point;
 
-std::vector<Triangle> triangulate(std::vector<Point> &points);
+std::vector<Triangle> monotoneTriangulate(std::vector<Point> &points);

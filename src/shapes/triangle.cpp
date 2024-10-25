@@ -2,7 +2,7 @@
 #include "triangle_edges.h"
 #include "edge.h"
 
-bool Triangle::neighbours(Triangle &other) {
+bool Triangle::neighbours(const Triangle &other) const {
     return false;
 }
 
