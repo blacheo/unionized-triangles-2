@@ -22,18 +22,19 @@ add_executable(
 	tests
 	tests/unit_tests/simple_triangle_tests.cpp
 	tests/unit_tests/contourize_tests.cpp
-	src/intersections/intersections.cpp
+	tests/unit_tests/point_in_triangle_tests.cpp
+	src/utilities/intersections.cpp
 	src/shapes/triangle.cpp
 	src/shapes/triangle_edges.cpp
-	src/contourize/contourize.cpp
+	src/utilities/contourize.cpp
 	src/shapes/edge.cpp
-	src/orientation/orientation.cpp
+	src/utilities/orientation.cpp
 	src/shapes/point.cpp
 	src/union.cpp
-	src/triangulation/triangulation.cpp
+	src/utilities/triangulation.cpp
 )
 
-include_directories(src)
+include_directories(include)
 
 target_link_libraries(
 	tests

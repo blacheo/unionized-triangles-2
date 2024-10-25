@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
-#include "../shapes/point.h"
-#include "../shapes/triangle.h"
+#include <triangle.h>
 
 struct TrigTrigInterResults {
     std::vector<Point> results;

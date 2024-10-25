@@ -12,7 +12,7 @@ bool Triangle::pointInTriangle(const Point &p) const {
     // all tests must be positive
     auto edges = TriangleEdges(*this);
 
-    return edges.e1.positiveSide(p) &&
-    edges.e2.positiveSide(p) &&
-    edges.e3.positiveSide(p);
+    return !edges.e1.positiveSide(p) &&
+    !edges.e2.positiveSide(p) &&
+    !edges.e3.positiveSide(p);
 }

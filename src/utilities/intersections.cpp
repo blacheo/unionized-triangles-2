@@ -1,8 +1,7 @@
 #include "intersections.h"
-#include <shapes/edge.h>
-#include <shapes/triangle_edges.h>
-#include <shapes/point.h>
 #include <optional>
+#include <edge.h>
+#include <triangle_edges.h>
 
 
 

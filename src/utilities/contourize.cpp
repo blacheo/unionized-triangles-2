@@ -1,7 +1,6 @@
-#include <shapes/triangle.h>
 #include <vector>
-#include "contourize.h"
-#include <orientation/orientation.h>
+#include <triangle.h>
+#include <orientation.h>
 
 Triangle clockwiseToCounterclockwise(const Triangle &t) {
     return Triangle(t.points[0], t.points[2], t.points[1], t.depth);

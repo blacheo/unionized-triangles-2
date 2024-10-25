@@ -1,10 +1,9 @@
-#include "shapes/triangle.h"
 #include <vector>
 #include <optional>
-#include <intersections/intersections.h>
-#include <contourize/contourize.h>
-#include <triangulation/triangulation.h>
 #include <union.h>
+#include <contourize.h>
+#include <intersections.h>
+#include <triangulation.h>
 
 std::vector<Triangle> unionize(const Triangle &t1, const Triangle &t2) {
 
@@ -23,7 +22,7 @@ std::vector<Triangle> unionize(const Triangle &t1, const Triangle &t2) {
 
 	std::vector<Point> contour = contourize(t1, t2, newIntersections);
 
-	return monotoneTriangulate(contour);
+	return triangulate(contour);
 }
 
 void unionize(Triangle soup) {

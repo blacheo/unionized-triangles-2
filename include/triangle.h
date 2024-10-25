@@ -1,7 +1,7 @@
 #pragma once
 #include "point.h"
 
-// points specified clockwise
+// points specified counterclockwise
 struct Triangle {
 	Point points[3];
 	int depth;
