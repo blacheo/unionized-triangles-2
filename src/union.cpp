@@ -24,7 +24,3 @@ std::vector<Triangle> unionize(const Triangle &t1, const Triangle &t2) {
 
 	return triangulate(contour);
 }
-
-void unionize(Triangle soup) {
-
-}
