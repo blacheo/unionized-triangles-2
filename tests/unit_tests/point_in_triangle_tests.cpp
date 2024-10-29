@@ -7,4 +7,7 @@ TEST(PointInTriangleTests, PointInTriangle) {
     EXPECT_FALSE(t.pointInTriangle({1.107,0.834}));
     EXPECT_FALSE(t.pointInTriangle({2.553, 0.823}));
     EXPECT_FALSE(t.pointInTriangle({1.63, 0.13}));
+    EXPECT_FALSE(t.pointInTriangle({1, 0.5}));
+    EXPECT_FALSE(t.pointInTriangle({3, 0.2}));
+    EXPECT_FALSE(t.pointInTriangle({2,1}));
 }
