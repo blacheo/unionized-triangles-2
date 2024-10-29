@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include <shapes/point.h>
+#include <point.h>
 
 
 TEST(TriangulationTests, Page3Example) {
@@ -8,5 +8,6 @@ TEST(TriangulationTests, Page3Example) {
          {175, 77}, {131, 72}, {111, 113},
           {72, 43}, {26, 55}, {29, 100}};
 
+    
      
 }
