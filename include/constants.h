@@ -1,0 +1,3 @@
+#pragma once
+
+#define MAX_TRIANGLE_INTERSECTION_POINTS 12

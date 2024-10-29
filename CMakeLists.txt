@@ -23,7 +23,10 @@ add_executable(
 	tests/unit_tests/simple_triangle_tests.cpp
 	tests/unit_tests/contourize_tests.cpp
 	tests/unit_tests/point_in_triangle_tests.cpp
+	tests/unit_tests/triangulation_tests.cpp
+	tests/unit_tests/ear_removal_tests.cpp
 	src/utilities/intersections.cpp
+	tests/union_tests.cpp
 	src/shapes/triangle.cpp
 	src/shapes/triangle_edges.cpp
 	src/utilities/contourize.cpp
@@ -32,6 +35,7 @@ add_executable(
 	src/shapes/point.cpp
 	src/union.cpp
 	src/utilities/triangulation.cpp
+	src/utilities/pointList.cpp
 )
 
 include_directories(include)
