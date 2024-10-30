@@ -36,6 +36,7 @@ add_executable(
 	src/union.cpp
 	src/utilities/triangulation.cpp
 	src/utilities/pointList.cpp
+	tests/unit_tests/orientation_tests.cpp
 )
 
 include_directories(include)

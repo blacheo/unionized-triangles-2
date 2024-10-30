@@ -12,5 +12,13 @@ TEST(ContourizeTest, TwoTriangles) {
     auto contour = contourize(t1, t2, newIntersections);
 
     EXPECT_TRUE(contour.size() > 0);
+    std::vector<Point> expectedContour {Point{0,0}, 
+    Point{5,0}, 
+    Point{4, 1}, 
+    Point{6,1}, 
+    Point{4,3}, 
+    Point{3.33333325, 1.66666675}, 
+    Point{2,3}};
+    EXPECT_EQ(contour, expectedContour);
 
 }
