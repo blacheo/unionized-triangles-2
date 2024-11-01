@@ -12,7 +12,15 @@ bool Triangle::pointInTriangle(const Point &p) const {
     // all tests must be positive
     auto edges = TriangleEdges(*this);
 
-    return !edges.e1.positiveSide(p) &&
-    !edges.e2.positiveSide(p) &&
-    !edges.e3.positiveSide(p);
+    for (int i = 0; i < NB_TRIANGLE_SIDES; i++) {
+        if (edges.edges[i].positiveSide(p)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+int nextPoint(int pointIndex)  {
+    return (pointIndex + 1) % 3;
 }
