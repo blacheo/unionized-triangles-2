@@ -8,4 +8,5 @@ struct Triangle {
     bool neighbours(const Triangle &other) const;
     Triangle(Point p1, Point p2, Point p3, int depth);
     bool pointInTriangle(const Point &p) const;
+    Point nextPoint(int pointIndex) const;
 };

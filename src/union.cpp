@@ -20,7 +20,7 @@ std::vector<Triangle> unionize(const Triangle &t1, const Triangle &t2) {
 		return std::vector{t1, t2};
 	}
 
-	std::vector<Point> contour = contourize(t1, t2, newIntersections);
+	std::vector<Point> contour = contourize(t1, t2);
 
 	return triangulate(contour);
 }
