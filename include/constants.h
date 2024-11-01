@@ -1,3 +1,5 @@
 #pragma once
 
 #define MAX_TRIANGLE_INTERSECTION_POINTS 12
+
+#define NB_TRIANGLE_SIDES 3
