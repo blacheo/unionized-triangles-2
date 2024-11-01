@@ -22,3 +22,19 @@ TEST(ContourizeTest, TwoTriangles) {
     EXPECT_EQ(contour, expectedContour);
 
 }
+
+TEST (ContourizeTests, TriangleSingleDipTest) {
+    auto t1 = Triangle({0,0}, {5,0}, {2,6}, 0);
+    auto t2 = Triangle({1,1}, {7,3}, {8,6}, 0);
+
+    auto newIntersections = intersections(t1, t2);
+
+    auto contour = contourize(t1, t2, newIntersections);
+
+    std::vector<Point> expectedContour{
+        {0,0}, {5,0}, {5,2}, {7,3}, {8,6}, {4,3}, {2,6}
+    };
+
+    EXPECT_EQ(contour, expectedContour);
+    
+}
