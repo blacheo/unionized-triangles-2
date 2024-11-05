@@ -7,16 +7,14 @@ bool PointList::empty() const {
 int PointList::getSize() const {
     return size;
 }
-int PointList::prev(const PointNode &p) const {
-    const int index = (p.prevIndex + size) % size;
-    return index;
+
+int PointNode::next() const {
+    return nextIndex;
 }
 
-int PointList::next(const PointNode &p) const {
-    const int index = p.nextIndex % size;
-    return index;
+int PointNode::prev() const {
+    return prevIndex;
 }
-
 
 void PointList::remove(int i) {
     if (size == 1) {
@@ -24,10 +22,8 @@ void PointList::remove(int i) {
         return;
     }
     const PointNode &p = points[i];
-    int prevInd = prev(p);
-    int nextInd = next(p);
-    points[prevInd].nextIndex = nextInd;
-    points[nextInd].prevIndex = prevInd;
+    points[p.prev()].nextIndex = p.next();
+    points[p.next()].prevIndex = p.prev();
     size--;
 }
 
@@ -35,4 +31,6 @@ PointList::PointList(const std::vector<Point> &points) : size {points.size()} {
     for (int i = 0; i < points.size(); i++) {
         this->points[i] = PointNode{i - 1, i + 1, points[i]};
     }
+    this->points[0].prevIndex = size - 1;
+    this->points[size - 1].nextIndex = 0; 
 }

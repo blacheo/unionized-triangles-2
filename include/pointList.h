@@ -8,6 +8,7 @@ struct PointNode {
     int nextIndex;
     Point p;
     int next() const;
+    int prev() const;
 };
 
 class PointList {
@@ -17,7 +18,6 @@ class PointList {
     PointList(const std::vector<Point> &points);
     bool empty() const;
     int getSize() const;
-    int prev(const PointNode &p) const;
-    int next(const PointNode &p) const;
+   
     void remove(int index);
 };

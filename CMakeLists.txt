@@ -38,8 +38,8 @@ add_executable(
 	src/utilities/pointList.cpp
 	tests/unit_tests/orientation_tests.cpp
 	tests/unit_tests/intersections_tests.cpp
-	src/data_structures/quad_tree.cpp
 	src/data_structures/box.cpp
+	src/data_structures/quad_tree.cpp
 )
 
 include_directories(include)
