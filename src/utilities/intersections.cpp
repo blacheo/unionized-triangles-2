@@ -64,6 +64,7 @@ std::optional<Point> intersection(const Edge &e1, const Edge &e2) {
     if (withinEdge(e1, candPoint) && withinEdge(e2, candPoint)) {
         return candPoint;
     }
+    return {};
 }
 void intersections(const Edge &e1, const TriangleEdges &te, std::vector<Point> &results) {
     for (int i = 0; i < NB_TRIANGLE_SIDES; i++) {

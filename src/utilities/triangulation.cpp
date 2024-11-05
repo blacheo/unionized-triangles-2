@@ -30,29 +30,17 @@ std::optional<Triangle> removeEar(int &index, PointList &pointList, const std::v
 
     const PointNode &nextNode = pointList.points[next];
     const PointNode &prevNode = pointList.points[prev];
-/*
-    Triangle candidate;
-
-    if (index > next_index && next_index < previous_index) {
-        candidate = Triangle{points[index], points[next_index], points[previous_index], 0};
-    }
-
-    if (index < next_index) {
-        candidate = Triangle{points[index], points[next_index], points[previous_index], 0};
-
-    }
-    */
 
     Triangle candidate = Triangle{p.p, nextNode.p, prevNode.p, 0}; 
 
     if (isAnEar(candidate, allPoints)) {
 
-        index = pointList.next(nextNode);
         pointList.remove(index);
+        index = next;
         
         return candidate;
     }
-    index = prev;
+    index = next;
     return {};
 
 }
@@ -64,13 +52,20 @@ std::vector<Triangle> triangulate(std::vector<Point> points) {
 
     PointList polygon = PointList(points);
     int i = 0;
-    while (!polygon.empty()) {
+    while (polygon.getSize() >= 4) {
 
         std::optional<Triangle> t = removeEar(i, polygon, points);
         if (t.has_value()) {
             result.push_back(t.value());
         }
     }
+
+    const PointNode curr = polygon.points[i];
+    const int next = polygon.next(curr);
+    const int prev = polygon.prev(curr);
+    
+    Triangle last {curr.p, polygon.points[next].p, polygon.points[prev].p, 0};
+    result.push_back(last);
     
 
     return result;

@@ -4,6 +4,9 @@ bool PointList::empty() const {
     return size == 0;
 }
 
+int PointList::getSize() const {
+    return size;
+}
 int PointList::prev(const PointNode &p) const {
     const int index = (p.prevIndex + size) % size;
     return index;
@@ -13,6 +16,7 @@ int PointList::next(const PointNode &p) const {
     const int index = p.nextIndex % size;
     return index;
 }
+
 
 void PointList::remove(int i) {
     if (size == 1) {
