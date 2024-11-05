@@ -3,29 +3,29 @@
 #include <triangle.h>
 #include <box.h>
 
-enum Status {
-    Empty,
-    Single,
-    Quad
-};
-
-class QuadTree {
+class AbstractQuadTree
+{
+    protected:
     Box b;
-    Status status;
-    QuadContent q;
+    AbstractQuadTree(Box b);
     public:
-    void addTriangle(const Triangle &t);
-    QuadTree(Box b);
-    std::vector<Triangle> visibleSurface() const;
-    Triangle triangleIntersection(const Point &p) const;
-
+    virtual void addTriangle(const Triangle &t) = 0;
+    virtual std::vector<Triangle> visibleSurface() const = 0;
+    virtual Triangle triangleIntersection(const Point &p) const = 0;
 };
 
-union QuadContent {
-
+class QuadTreeLeaf : AbstractQuadTree
+{
     Triangle t;
-    std::vector<QuadTree> children;
-    bool nothing;
-    QuadContent() {};
-    ~QuadContent() {};
+
+    void addTriangle(const Triangle &t) override;
+};
+
+class QuadTree : AbstractQuadTree
+{
+    std::vector<AbstractQuadTree> children;
+
+public:
+    QuadTree(Box b);
+    void addTriangle(const Triangle &t) override;
 };
