@@ -4,6 +4,7 @@
 #include <triangle.h>
 #include <optional>
 #include <pointList.h>
+#include <orientation.h>
 
 
 
@@ -17,23 +18,19 @@ bool isAnEar(Triangle triangle, const std::vector<Point> &points) {
     return true;
 }
 
-int mod(int a, int b) {
-    return (a + b) % b;
-}
-
-
 
 std::optional<Triangle> removeEar(int &index, PointList &pointList, const std::vector<Point> &allPoints) {
     PointNode &p = pointList.points[index];
-    const int next = pointList.next(p);
-    const int prev = pointList.prev(p);
+    const int next = p.next();
+    const int prev = p.prev();
+
 
     const PointNode &nextNode = pointList.points[next];
     const PointNode &prevNode = pointList.points[prev];
 
     Triangle candidate = Triangle{p.p, nextNode.p, prevNode.p, 0}; 
 
-    if (isAnEar(candidate, allPoints)) {
+    if (orientation(p.p, nextNode.p, prevNode.p) == Counterclockwise && isAnEar(candidate, allPoints)) {
 
         pointList.remove(index);
         index = next;
@@ -61,8 +58,8 @@ std::vector<Triangle> triangulate(std::vector<Point> points) {
     }
 
     const PointNode curr = polygon.points[i];
-    const int next = polygon.next(curr);
-    const int prev = polygon.prev(curr);
+    const int next = curr.next();
+    const int prev = curr.prev();
     
     Triangle last {curr.p, polygon.points[next].p, polygon.points[prev].p, 0};
     result.push_back(last);

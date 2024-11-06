@@ -40,6 +40,7 @@ add_executable(
 	tests/unit_tests/intersections_tests.cpp
 	src/data_structures/box.cpp
 	src/data_structures/quad_tree.cpp
+	tests/quad_tree_tests.cpp
 )
 
 include_directories(include)

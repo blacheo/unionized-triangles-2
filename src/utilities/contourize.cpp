@@ -10,34 +10,7 @@ Triangle clockwiseToCounterclockwise(const Triangle &t)
     return Triangle(t.points[0], t.points[2], t.points[1], t.depth);
 }
 
-/*
-bool isCounterClockwiseForAll(const Point &previous, const Point &candidate, const std::vector<Point> & points) {
-    for (const auto &point : points) {
-        if (previous == point || candidate == point) {
-            continue;
-        }
-        if (orientation(previous, point, candidate) != Counterclockwise) {
-            return false;
-        }
-    }
-    return true;
-}
-*/
 
-/*
-Point nextPoint(const Point &previous, std::vector<Point> &candidates, const std::vector<Point> &points) {
-    Point mostCounterclockwise = candidates[0];
-    for (int i = 1; i < candidates.size(); i++) {
-        if (isCounterClockwiseForAll(previous, candidates[i], points)) {
-            Point p = candidates[i];
-            candidates.erase(i + candidates.begin());
-            return p;
-        }
-    }
-
-    return Point{-69,-69};
-}
-*/
 
 float distanceSquared(const Point &p1, const Point &p2)
 {
