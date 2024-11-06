@@ -4,18 +4,21 @@
 #include <vector>
 #include "box.h"
 
+const int POINT_NOT_IN_QUADTREE = -1;
+
 #define QUADTREE_NODE_MAX_SHAPE 4
 
 class QuadTree {
     Box b;
-    std::shared_ptr<Triangle> t;
+    std::vector<Triangle> triangles; 
 
     std::vector<QuadTree> children;
 
     public:
         QuadTree(Box b);
-        void addTriangle(std::shared_ptr<Triangle> t);
+        void addTriangle(Triangle triangle);
         std::vector<Triangle> visibleSurface() const;
-        Triangle pointIntersection(Point p) const;
+        // returns triangle id
+        int pointIntersection(Point p) const;
 
 };

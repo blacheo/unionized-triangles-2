@@ -12,3 +12,10 @@ bool Box::isIn(const Triangle &t) const {
     }
     return false;
 }
+
+bool Box::isIn(const Point &p) const {
+    if (p.x > minX && p.x < maxX && p.y > minY && p.y < maxY) {
+        return true;
+    }
+    return false;
+}
