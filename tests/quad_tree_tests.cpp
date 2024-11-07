@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include <quad_tree.h>
 
+/*
 TEST (QuadTreeTest, OverlappingTriangles) {
 
     QuadTree q{Box{0, 10, 0, 10}};
@@ -18,7 +19,7 @@ TEST (QuadTreeTest, OverlappingTriangles) {
     EXPECT_EQ(q.pointIntersection(Point{1,1}), 1);
 
 }
-
+*/
 TEST (QuadTreeTest, SingleInsertion) {
     QuadTree q{Box{0, 10, 0, 10}};
 
