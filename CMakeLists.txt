@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.12)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 include(FetchContent)
 FetchContent_Declare(
   googletest
@@ -41,6 +43,9 @@ add_executable(
 	src/data_structures/box.cpp
 	src/data_structures/quad_tree.cpp
 	tests/quad_tree_tests.cpp
+	tests/edge_union_cases.cpp
+	tests/unit_tests/convex_triangulation_tests.cpp
+	src/utilities/convex_triangulation.cpp
 )
 
 include_directories(include)

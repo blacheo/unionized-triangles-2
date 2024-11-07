@@ -11,4 +11,5 @@ struct Triangle
     Triangle(Point p1, Point p2, Point p3, int depth, int id=0);
     bool pointInTriangle(const Point &p) const;
     Point nextPoint(int pointIndex) const;
+    bool operator==(const Triangle &other) const;
 };
