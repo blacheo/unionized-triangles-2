@@ -5,6 +5,19 @@
 #include <intersections.h>
 #include <triangulation.h>
 
+std::vector<Triangle> unionize2(const Triangle &t1, const Triangle &t2) {
+	// if neighbours, do nothing
+	if (t1.neighbours(t2)) {
+		return std::vector{t1, t2};
+	}
+
+	// look for points in triangles
+	// if 0 points in triangles
+	// 	check if triangles intersect
+	// if 1 point in triangle
+	// 	
+}
+
 std::vector<Triangle> unionize(const Triangle &t1, const Triangle &t2) {
 
 	// if neighbours, do nothing
