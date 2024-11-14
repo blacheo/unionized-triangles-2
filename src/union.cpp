@@ -28,9 +28,7 @@ std::vector<Point> getPointsOnSide(const Edge &e, const std::vector<Point> intr,
 
 std::vector<Triangle> unionizeTopAndBottom(const Triangle &top, const Triangle &bottom)
 {
-    if (intersections(top, bottom).empty()) {
-        return {};
-    }
+    
     std::vector<Triangle> result;
     TriangleEdges topEdges = TriangleEdges(top);
     TriangleEdges botEdges = TriangleEdges(bottom);
@@ -62,6 +60,9 @@ std::vector<Triangle> unionizeTopAndBottom(const Triangle &top, const Triangle &
 
 std::vector<Triangle> unionize(const Triangle &t1, const Triangle &t2)
 {
+    if (intersections(t1, t2).empty()) {
+        return {t1, t2};
+    }
     if (t1.depth < t2.depth)
     {
         return unionizeTopAndBottom(t1, t2);
