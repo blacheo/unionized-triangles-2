@@ -1,9 +1,9 @@
 #include "intersections.h"
 #include <optional>
-#include <edge.h>
 #include <triangle_edges.h>
 #include <triangle.h>
 
+#include <edge.h>
 
 
 std::optional<float> getB(std::optional<float> slope, Point p) {
@@ -32,10 +32,37 @@ bool withinEdge(Edge e, Point p) {
 }
 
 void intersection(Edge e1, Edge e2, std::vector<Point> &results) {
-    auto point = intersection(e1, e2);
+    auto point = intersectionWithinEdge(e1, e2);
     if (point.has_value()) {
         results.push_back(point.value());
     }
+}
+
+
+std::optional<Point> intersectionWithinEdge(const Edge &e1, const Edge &e2) {
+    std::optional<Point> candPoint = intersection(e1, e2);
+    if (candPoint.has_value() && 
+    withinEdge(e1, candPoint.value()) &&
+     withinEdge(e2, candPoint.value())) {
+        return candPoint;
+    }
+    return {};
+}
+
+// returns intersection with e1 being extended infinitly in its direction
+std::optional<Point> intersectionWithinEdgeDirection(const Edge &e1, const Edge &e2) {
+    auto candPoint = intersection(e1, e2);
+
+    if (candPoint.has_value()) {
+        auto s1 = getSlope(Edge{e1.p1, candPoint.value()});
+        auto s2 = getSlope(e1);
+
+        // check if both slopes have the same sign
+        if (s1.value() * s2.value() >= 0) {
+            return candPoint;
+        }
+    }
+    return {};
 }
 
 std::optional<Point> intersection(const Edge &e1, const Edge &e2) {
@@ -61,10 +88,7 @@ std::optional<Point> intersection(const Edge &e1, const Edge &e2) {
     float candX = (b2.value() - b1.value()) / (slope1.value() - slope2.value());
     auto candPoint = Point{ candX, slope1.value() * candX + b1.value()};
 
-    if (withinEdge(e1, candPoint) && withinEdge(e2, candPoint)) {
         return candPoint;
-    }
-    return {};
 }
 void intersections(const Edge &e1, const TriangleEdges &te, std::vector<Point> &results) {
     for (int i = 0; i < NB_TRIANGLE_SIDES; i++) {

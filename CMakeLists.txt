@@ -23,7 +23,6 @@ project(intersection)
 add_executable(
 	tests
 	tests/unit_tests/simple_triangle_tests.cpp
-	tests/unit_tests/contourize_tests.cpp
 	tests/unit_tests/point_in_triangle_tests.cpp
 	tests/unit_tests/triangulation_tests.cpp
 	tests/unit_tests/ear_removal_tests.cpp

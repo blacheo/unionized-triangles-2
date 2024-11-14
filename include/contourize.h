@@ -5,6 +5,5 @@ struct Triangle;
 struct Point;
 
 
-std::vector<Point> contourize(const Triangle &t1, const Triangle &t2);
-
-std::vector<Point> sortPoints(std::vector<Point> &points);
+// creates a contour from a list of points 
+std::vector<Point> contourize(const std::vector<Point> &points);
