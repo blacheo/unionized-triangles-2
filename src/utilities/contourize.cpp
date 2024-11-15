@@ -8,7 +8,8 @@ bool isCounterClockwiseForAll(const Point &previous, const Point &candidate, con
         if (previous == point || candidate == point) {
             continue;
         }
-        if (orientation(previous, point, candidate) != Counterclockwise) {
+	auto o = orientation(previous, point, candidate);
+        if (o != Counterclockwise) {
             return false;
         }
     }
@@ -24,6 +25,7 @@ std::vector<Point> contourize(const std::vector<Point> &points) {
         if (isCounterClockwiseForAll(previous, candidates.front(), points)) {
             previous = candidates.front();
             candidates.pop_front();
+	    result.push_back(previous);
         } else {
             candidates.push_back(candidates.front());
             candidates.pop_front();

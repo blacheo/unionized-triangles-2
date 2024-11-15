@@ -53,14 +53,30 @@ std::optional<Point> intersectionWithinEdge(const Edge &e1, const Edge &e2) {
 std::optional<Point> intersectionWithinEdgeDirection(const Edge &e1, const Edge &e2) {
     auto candPoint = intersection(e1, e2);
 
-    if (candPoint.has_value()) {
-        auto s1 = getSlope(Edge{e1.p1, candPoint.value()});
-        auto s2 = getSlope(e1);
+    if (candPoint.has_value() && withinEdge(e2, candPoint.value())) {
 
-        // check if both slopes have the same sign
-        if (s1.value() * s2.value() >= 0) {
-            return candPoint;
-        }
+	    // check if in direction e1 is pointing at
+	    // case where e1 is pointing towards positive x axis
+	    if (e1.p1.x < e1.p2.x && candPoint.value().x >= e1.p1.x) {
+		return candPoint;
+	    }
+
+	    // case where e1 is pointing towards negative x axis
+	    if (e1.p1.x > e1.p2.x && candPoint.value().x <= e1.p1.x) {
+		return candPoint;
+	    }
+
+	    // edge case where p1 and p2 form a vertical line
+	    // case where e1 is pointing towards positive y axis
+	    if (e1.p1.y < e1.p2.y && candPoint.value().y >= e1.p1.y) {
+		    return candPoint;
+	    }
+	
+	    // case where e1 is pointing towards negative axis
+	    if (e1.p1.y > e1.p2.y && candPoint.value().y <= e1.p1.y) {
+		    return candPoint;
+	    }
+
     }
     return {};
 }
@@ -87,6 +103,12 @@ std::optional<Point> intersection(const Edge &e1, const Edge &e2) {
     }
     float candX = (b2.value() - b1.value()) / (slope1.value() - slope2.value());
     auto candPoint = Point{ candX, slope1.value() * candX + b1.value()};
+    
+    // ignore case where intersection is at an endpoint
+    /*
+    if (candPoint == e1.p1 || candPoint == e1.p2 || candPoint == e2.p1 || candPoint == e2.p2) {
+	    return {};
+    }*/
 
         return candPoint;
 }

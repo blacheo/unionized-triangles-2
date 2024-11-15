@@ -3,7 +3,7 @@
 #include <triangle_edges.h>
 #include <intersections.h>
 #include <contourize.h>
-#include <triangulation.h>
+#include <convex_triangulation.h>
 
 std::vector<Point> getPointsOnSide(const Edge &e, const std::vector<Point> intr, const Triangle &bottom)
 {
@@ -39,7 +39,7 @@ std::vector<Triangle> unionizeTopAndBottom(const Triangle &top, const Triangle &
     {
         for (int j = 0; j < NB_TRIANGLE_SIDES; j++)
         {
-            auto cand = intersectionWithinEdgeDirection(topEdges.edges[i], botEdges.edges[i]);
+            auto cand = intersectionWithinEdgeDirection(topEdges.edges[i], botEdges.edges[j]);
             if (cand.has_value())
             {
                 intrPoints.push_back(cand.value());
@@ -50,11 +50,16 @@ std::vector<Triangle> unionizeTopAndBottom(const Triangle &top, const Triangle &
     for (int i = 0; i < NB_TRIANGLE_SIDES; i++)
     {
         std::vector<Point> currentShape = getPointsOnSide(topEdges.edges[i], intrPoints, bottom);
+	if (currentShape.empty()) {
+		continue;
+	}
         std::vector<Point> orderedPoints = contourize(currentShape);
-        std::vector<Triangle> newTriangles = triangulate(orderedPoints);
+        std::vector<Triangle> newTriangles = convexTriangulation(orderedPoints, bottom.depth, bottom.id);
         result.insert(result.begin(), newTriangles.begin(), newTriangles.end());
     }
 
+    // add top triangle
+    result.push_back(top);
     return result;
 }
 

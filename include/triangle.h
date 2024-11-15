@@ -1,5 +1,6 @@
 #pragma once
 #include "point.h"
+#include "print_triangle.h"
 
 // points specified counterclockwise
 struct Triangle
