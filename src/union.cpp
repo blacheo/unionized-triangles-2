@@ -5,30 +5,48 @@
 #include <list>
 #include <triangle_edges.h>
 #include <intersections.h>
+#include <split_triangle.h>
+#include <triangulation.h>
 
-std::vector<Triangle> unionizeTopAndBottom(const Triangle &top, const Triangle &bot) {
-	std::vector<Triangle> result;
+std::vector<Triangle> unionizeTopAndBottom(const Triangle &top, const Triangle &bot)
+{
+    std::vector<Triangle> result;
 
-	std::list<Point> intr;
-	TriangleEdges topEdges = TriangleEdges(top);
+    std::list<Point> intr;
+    TriangleEdges topEdges = TriangleEdges(top);
 
-	// keep track of relevant triangles
-	
-	for (int i = 0; i < NB_TRIANGLE_SIDES; i++) {
-		const Edge &e = topEdges.edges[i]; 
-		auto newIntr = intersections(e, bot);
-		// split triangle if exists
-		// currently relevant triangles
-		// add these to result
-		
-		// future relevant triangles
-		// use to 
+    // keep track of relevant triangles
+    std::vector<Point> relv = {bot.points[0], bot.points[1], bot.points[2]};
 
-		// filter using previous edges
+    for (int i = 0; i < NB_TRIANGLE_SIDES; i++)
+    {
+        const Edge &e = topEdges.edges[i];
+        auto shapes = splitTriangle(Triangle(relv[0], relv[1], relv[2], bot.depth, bot.id), e);
+        // split triangle if exists
+        // currently relevant triangles
+        // add these to result
+        if (!shapes[0].empty())
+        {
+            std::vector<Triangle> relvTriangles = triangulate(shapes[0]);
+            result.insert(result.end(), relvTriangles.begin(), relvTriangles.end());
+        }
+        // future relevant triangles
+        relv = shapes[1];
+    }
 
-		// create shape if points exists
-		contourize();
-	}
-	return result;
+    result.push_back(top);
+    return result;
+}
 
+std::vector<Triangle> unionize(const Triangle &t1, const Triangle &t2)
+{
+    if (intersections(t1, t2).empty())
+    {
+        return {t1, t2};
+    }
+    if (t1.depth < t2.depth)
+    {
+        return unionizeTopAndBottom(t1, t2);
+    }
+    return unionizeTopAndBottom(t2, t1);
 }

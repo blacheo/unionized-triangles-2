@@ -22,6 +22,7 @@ project(intersection)
 
 add_executable(
 	tests
+	tests/unit_tests/split_triangle_tests.cpp
 	tests/unit_tests/simple_triangle_tests.cpp
 	tests/unit_tests/point_in_triangle_tests.cpp
 	tests/unit_tests/triangulation_tests.cpp
@@ -48,6 +49,8 @@ add_executable(
 	tests/unit_tests/edge_direction_intr_tests.cpp
 	tests/unit_tests/contourize_tests.cpp
 	src/debug_utilities/print_triangles.cpp
+	src/utilities/split_triangle.cpp
+	tests/unit_tests/orientation_tests.cpp
 )
 
 include_directories(include)
