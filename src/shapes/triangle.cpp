@@ -2,13 +2,7 @@
 #include "triangle_edges.h"
 #include "edge.h"
 
-bool Triangle::operator==(const Triangle &other) const {
-	return points[0] == other.points[0] &&
-		points[1] == other.points[1] &&
-		points[2] == other.points[2] &&
-		depth == other.depth &&
-		id == other.id;
-}
+
 
 bool Triangle::neighbours(const Triangle &other) const {
     return false;

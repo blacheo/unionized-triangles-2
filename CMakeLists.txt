@@ -23,6 +23,7 @@ project(intersection)
 add_executable(
 	tests
 	tests/unit_tests/split_triangle_tests.cpp
+	src/debug_utilities/mostly_equal.cpp
 	tests/unit_tests/simple_triangle_tests.cpp
 	tests/unit_tests/point_in_triangle_tests.cpp
 	tests/unit_tests/triangulation_tests.cpp

@@ -8,6 +8,6 @@ TEST(TriangulationTests, Page3Example) {
          {175, 77}, {131, 72}, {111, 113},
           {72, 43}, {26, 55}, {29, 100}};
 
-    auto t = triangulate(polygon);    
+    auto t = triangulate(polygon, 0, 0);    
     EXPECT_TRUE(t.size() > 0);
 }

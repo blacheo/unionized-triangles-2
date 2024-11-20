@@ -12,11 +12,11 @@ TEST(EarRemovalTests, SingleEarRemoval) {
 
     PointList pointList = PointList(polygon);
     int index = 0;
-    auto t = removeEar(index, pointList, polygon);
+    auto t = removeEar(index, pointList, polygon, 0,0);
     EXPECT_FALSE(t.has_value());
     EXPECT_TRUE(true);
 
-    auto t2 = removeEar(index, pointList, polygon);
+    auto t2 = removeEar(index, pointList, polygon,0,0);
 
-    auto t3 = removeEar(index, pointList, polygon);
+    auto t3 = removeEar(index, pointList, polygon,0,0);
 }

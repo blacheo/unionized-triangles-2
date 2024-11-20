@@ -15,17 +15,17 @@ TEST(UnionTrivialTests, NotTouching)
 TEST(UnionTests, TwoIntersections)
 {
 
-    auto t1 = Triangle(Point{0, 0}, Point{5, 0}, Point{2, 3}, 0);
-    auto t2 = Triangle(Point{3, 1}, Point{6, 1}, Point{4, 3}, 1);
+    auto t1 = Triangle(Point{0, 0}, Point{5, 0}, Point{2, 3}, 0, 1);
+    auto t2 = Triangle(Point{3, 1}, Point{6, 1}, Point{4, 3}, 1, 2);
 
     auto ts = unionize(t1, t2);
 
     EXPECT_TRUE(ts.size() == 3);
 
     std::vector<Triangle> expected{
-	    Triangle({6,1}, {4,3}, {4,1}, 1, 0),
-		    Triangle({4,3}, {3.33333,1.66667}, {4,1}, 1,0),
-    Triangle({0,0}, {5,0}, {2,3}, 0, 0)};
+	    Triangle({6,1}, {4,3}, {4,1}, 1, 2),
+		    Triangle({4,3}, {3.33333,1.66667}, {4,1}, 1,2),
+    Triangle({0,0}, {5,0}, {2,3}, 0, 1)};
     EXPECT_EQ(ts, expected);
 }
 
@@ -55,20 +55,26 @@ TEST(UnionTests, SharesPointTest)
 TEST(UnionTests, FoldTriangleTest)
 {
 
-    Triangle bottom = Triangle({0, 5}, {3, 2}, {5, 3}, 1, 1);
-    Triangle top = Triangle({0.1, 9}, {5, 5}, {2, 4}, 2, 2);
+    Triangle top = Triangle({0, 5}, {3, 2}, {5, 3}, 1, 1);
+    Triangle bottom = Triangle({0.1, 9}, {2, 4}, {5,5}, 2, 2);
 
     auto results = unionize(bottom, top);
 
-    std::vector<Triangle> expected_results_1;
+    std::vector<Triangle> expected_results_1 = {
+        Triangle({0.1, 9}, {1.91038, 4.23585}, {5,5}, 2, 2),
+        Triangle({1.91038,4.23585}, {2.27273,4.09091}, {5, 5}, 2, 2),
+        Triangle({0,5}, {3,2}, {5,3}, 1, 1)
+    };
 
     EXPECT_EQ(results, expected_results_1);
 
-    bottom.depth = 3;
+    top.depth = 3;
 
     results = unionize(bottom, top);
 
-    std::vector<Triangle> expected_results_2;
+    std::vector<Triangle> expected_results_2 = {
+
+    };
 
     EXPECT_EQ(results, expected_results_2);
 }

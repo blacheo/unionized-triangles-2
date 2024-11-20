@@ -56,6 +56,16 @@ std::optional<Point> intersectionWithinEdge(const Edge &e1, const Edge &e2)
     return {};
 }
 
+// intersection with first edge being considered infinite in length
+std::optional<Point> intersectionFirstSide(const Edge &e1, const Edge &e2) {
+    auto candPoint = intersection(e1, e2);
+
+    if (candPoint.has_value() && withinEdge(e2, candPoint.value())) {
+        return candPoint;
+    }
+    return {};
+}
+
 // returns intersection with e1 being extended infinitly in its direction
 std::optional<Point> intersectionWithinEdgeDirection(const Edge &e1, const Edge &e2)
 {
@@ -153,13 +163,13 @@ std::vector<Point> intersections(const Triangle &t1, const Triangle &t2)
     return results;
 }
 
-std::vector<Point> intersections(const Triangle t, const Edge &line)
+std::vector<Point> intersections(const Triangle &t, const Edge &line)
 {
     std::vector<Point> result;
     TriangleEdges es{t};
     for (int i = 0; i < NB_TRIANGLE_SIDES; i++)
     {
-        auto cand = intersectionWithinEdge(es.edges[i], line);
+        auto cand = intersectionFirstSide(line, es.edges[i]);
         if (cand.has_value())
         {
             result.push_back(cand.value());

@@ -21,13 +21,13 @@ std::vector<Triangle> unionizeTopAndBottom(const Triangle &top, const Triangle &
     for (int i = 0; i < NB_TRIANGLE_SIDES; i++)
     {
         const Edge &e = topEdges.edges[i];
-        auto shapes = splitTriangle(Triangle(relv[0], relv[1], relv[2], bot.depth, bot.id), e);
+        auto shapes = splitTriangle(Triangle(relv[0], relv[1], relv[2]), e);
         // split triangle if exists
         // currently relevant triangles
         // add these to result
         if (!shapes[0].empty())
         {
-            std::vector<Triangle> relvTriangles = triangulate(shapes[0]);
+            std::vector<Triangle> relvTriangles = triangulate(shapes[0], bot.depth, bot.id);
             result.insert(result.end(), relvTriangles.begin(), relvTriangles.end());
         }
         // future relevant triangles
