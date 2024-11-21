@@ -2,13 +2,7 @@
 #include "triangle_edges.h"
 #include "edge.h"
 
-
-
-bool Triangle::neighbours(const Triangle &other) const {
-    return false;
-}
-
-Triangle::Triangle(const Point &p1, const Point &p2, const Point &p3, int depth, int id) : points{p1,p2,p3}, depth{depth}, id{id} {}
+Triangle::Triangle(const Point &p1, const Point &p2, const Point &p3, int depth, int id, std::vector<int> neighbours) : points{p1,p2,p3}, depth{depth}, id{id}, neighbours{neighbours} {}
 
 bool Triangle::pointInTriangle(const Point &p) const {
     // all tests must be positive

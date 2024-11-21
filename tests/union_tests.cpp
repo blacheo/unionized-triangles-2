@@ -128,9 +128,9 @@ TEST(UnionTests, StarTest)
     results = unionize(bottom, top);
 
     std::vector<Triangle> expected_results_2 = {
-        Triangle({0,3}, {0.8,3}, {0.540541,3.64865}, 1, 3),
-        Triangle({5,3}, {4.30233,3.83721}, {3.8,3}, 1, 3),
-        Triangle({2.5,6}, {1.66667,5}, {3.33333,5}, 1, 3),
+        Triangle({0,3}, {0.8,3}, {0.540541,3.64865}, 3, 1),
+        Triangle({5,3}, {4.30233,3.83721}, {3.8,3}, 3, 1),
+        Triangle({2.5,6}, {1.66667,5}, {3.33333,5}, 3, 1),
         Triangle({0,5}, {2,0}, {5,5}, 2, 2)
     };
 

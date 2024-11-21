@@ -52,6 +52,7 @@ add_executable(
 	src/debug_utilities/print_triangles.cpp
 	src/utilities/split_triangle.cpp
 	tests/unit_tests/orientation_tests.cpp
+	tests/union_neighbours_tests.cpp
 )
 
 include_directories(include)

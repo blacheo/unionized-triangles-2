@@ -40,6 +40,9 @@ std::vector<Triangle> unionizeTopAndBottom(const Triangle &top, const Triangle &
 
 std::vector<Triangle> unionize(const Triangle &t1, const Triangle &t2)
 {
+	if (std::find(t1.neighbours.begin(), t1.neighbours.end(), t2.id) != t1.neighbours.end()) {
+		return {t1, t2};
+	}
     if (intersections(t1, t2).empty())
     {
         return {t1, t2};
