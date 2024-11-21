@@ -5,4 +5,4 @@
 struct Triangle;
 struct Edge;
 
-std::vector<std::vector<Point>> splitTriangle(const Triangle &t, const Edge &line);
+std::vector<std::vector<Point>> splitShape(const std::vector<Point> &points, const Edge &line);

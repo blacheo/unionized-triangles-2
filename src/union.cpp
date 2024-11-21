@@ -21,7 +21,7 @@ std::vector<Triangle> unionizeTopAndBottom(const Triangle &top, const Triangle &
     for (int i = 0; i < NB_TRIANGLE_SIDES; i++)
     {
         const Edge &e = topEdges.edges[i];
-        auto shapes = splitTriangle(Triangle(relv[0], relv[1], relv[2]), e);
+        auto shapes = splitShape(relv, e);
         // split triangle if exists
         // currently relevant triangles
         // add these to result

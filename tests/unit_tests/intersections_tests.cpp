@@ -11,3 +11,13 @@ TEST (IntersectionTests, EdgeToEdgeTest) {
     Point expected_point = Point{4,2};
     EXPECT_TRUE(actual_point == expected_point);
 }
+
+
+TEST (IntersectionTests, EdgeTest) {
+    Edge e1{{0.8, 3}, {5,3}};
+    Edge e2{{2,0}, {5,5}};
+
+    auto p = intersectionFirstSide(e1,e2);
+
+    EXPECT_TRUE(p.has_value());
+}

@@ -2,7 +2,7 @@
 #include <optional>
 #include <triangle_edges.h>
 #include <triangle.h>
-
+#include <constants.h>
 #include <edge.h>
 
 std::optional<float> getB(std::optional<float> slope, Point p)
@@ -26,11 +26,11 @@ std::optional<float> getSlope(Edge e)
 
 bool withinEdge(Edge e, Point p)
 {
-    float minX = std::min(e.p1.x, e.p2.x);
-    float maxX = std::max(e.p1.x, e.p2.x);
+    float minX = std::min(e.p1.x, e.p2.x) - EPSILON;
+    float maxX = std::max(e.p1.x, e.p2.x) + EPSILON;
 
-    float minY = std::min(e.p1.y, e.p2.y);
-    float maxY = std::max(e.p1.y, e.p2.y);
+    float minY = std::min(e.p1.y, e.p2.y) - EPSILON;
+    float maxY = std::max(e.p1.y, e.p2.y) + EPSILON;
 
     return minX <= p.x && p.x <= maxX && minY <= p.y && p.y <= maxY;
 }
@@ -163,13 +163,13 @@ std::vector<Point> intersections(const Triangle &t1, const Triangle &t2)
     return results;
 }
 
-std::vector<Point> intersections(const Triangle &t, const Edge &line)
+std::vector<Point> intersections(const std::vector<Point> &points, const Edge &line)
 {
     std::vector<Point> result;
-    TriangleEdges es{t};
-    for (int i = 0; i < NB_TRIANGLE_SIDES; i++)
+    std::vector<Edge> es = makeEdges(points);
+    for (int i = 0; i < es.size(); i++)
     {
-        auto cand = intersectionFirstSide(line, es.edges[i]);
+        auto cand = intersectionFirstSide(line, es[i]);
         if (cand.has_value())
         {
             result.push_back(cand.value());

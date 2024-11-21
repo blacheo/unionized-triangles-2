@@ -5,22 +5,22 @@
 #include <edge.h>
 #include <intersections.h>
 
-std::vector<std::vector<Point>> splitTriangle(const Triangle &t, const Edge &line)
+std::vector<std::vector<Point>> splitShape(const std::vector<Point> &points, const Edge &line)
 {
     // get intersections
-    auto intr = intersections(t, line);
+    auto intr = intersections(points, line);
 
     std::vector<Point> pos;
     std::vector<Point> neg;
-    for (int i = 0; i < NB_TRIANGLE_SIDES; i++)
+    for (int i = 0; i < points.size(); i++)
     {
-        if (line.positiveSide(t.points[i]))
+        if (line.positiveSide(points[i]))
         {
-            pos.push_back(t.points[i]);
+            pos.push_back(points[i]);
         }
         else
         {
-            neg.push_back(t.points[i]);
+            neg.push_back(points[i]);
         }
     }
 

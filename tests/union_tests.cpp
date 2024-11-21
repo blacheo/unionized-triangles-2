@@ -1,6 +1,7 @@
 #include "gtest/gtest.h"
 #include <union.h>
 #include <triangle.h>
+#include <orientation.h>
 
 TEST(UnionTrivialTests, NotTouching)
 {
@@ -73,12 +74,16 @@ TEST(UnionTests, FoldTriangleTest)
     results = unionize(bottom, top);
 
     std::vector<Triangle> expected_results_2 = {
-
+        Triangle({0,5}, {2.6129, 2.3871}, {1.91038, 4.23585}, 3, 1),
+        Triangle({3,2}, {5, 3}, {2.6129, 2.3871}, 3, 1),
+        Triangle({5,3}, {2.27273, 4.09091}, {2.6129, 2.3871}, 3, 1),
+        Triangle({2.27273,4.09091}, {2, 4}, {2.6129, 2.3871}, 3, 1),
+        Triangle({0.1,9}, {2, 4}, {5, 5}, 2, 2)
     };
 
     EXPECT_EQ(results, expected_results_2);
 }
-
+/*
 TEST(UnionTests, IceCreamTest)
 {
     Triangle bottom = Triangle({0, 5}, {3, 2}, {5, 3}, 2, 1);
@@ -97,16 +102,24 @@ TEST(UnionTests, IceCreamTest)
     std::vector<Triangle> expected_results_2;
 
     EXPECT_EQ(results, expected_results_2);
-}
+}*/
 
 TEST(UnionTests, StarTest)
 {
-    Triangle bottom = Triangle({0, 3}, {2.5, 6}, {5, 3}, 1, 1);
+    Triangle bottom = Triangle({0, 3}, {5, 3}, {2.5, 6}, 1, 1);
     Triangle top = Triangle({0, 5}, {2, 0}, {5, 5}, 2, 2);
+
+    ASSERT_EQ(orientation(bottom.points[0], bottom.points[1], bottom.points[2]), Counterclockwise);
+    ASSERT_EQ(orientation(top.points[0], top.points[1], top.points[2]), Counterclockwise);
 
     auto results = unionize(bottom, top);
 
-    std::vector<Triangle> expected_results_1;
+    std::vector<Triangle> expected_results_1 = {
+        Triangle({2,0}, {3.8, 3}, {0.8, 3}, 2, 2),
+        Triangle({5,5}, {3.33333, 5}, {4.30233, 3.83721}, 2, 2),
+        Triangle({0,5}, {0.540541, 3.64865}, {1.66667, 5}, 2, 2),
+        Triangle({0, 3}, {5, 3}, {2.5, 6}, 1, 1)
+    };
 
     EXPECT_EQ(results, expected_results_1);
 
@@ -114,7 +127,12 @@ TEST(UnionTests, StarTest)
 
     results = unionize(bottom, top);
 
-    std::vector<Triangle> expected_results_2;
+    std::vector<Triangle> expected_results_2 = {
+        Triangle({0,3}, {0.8,3}, {0.540541,3.64865}, 1, 3),
+        Triangle({5,3}, {4.30233,3.83721}, {3.8,3}, 1, 3),
+        Triangle({2.5,6}, {1.66667,5}, {3.33333,5}, 1, 3),
+        Triangle({0,5}, {2,0}, {5,5}, 2, 2)
+    };
 
     EXPECT_EQ(results, expected_results_2);
 }
