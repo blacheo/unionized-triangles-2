@@ -2,7 +2,7 @@
 #include <ostream>
 
 struct Point {
-	float x, y;
+	float x, y, z;
 	bool operator==(const Point &other) const;
 };
 
