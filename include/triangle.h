@@ -3,7 +3,7 @@
 #include "print_triangle.h"
 #include <vector>
 
-// points specified counterclockwise
+// points specified in counterclockwise or collinear (line / point) order
 struct Triangle
 {
     Point points[3];

@@ -17,6 +17,5 @@ bool Triangle::operator==(const Triangle &other) const {
 	return mostlyEqual(points[0], other.points[0]) &&
 		mostlyEqual(points[1], other.points[1]) &&
 		mostlyEqual(points[2], other.points[2]) &&
-		depth == other.depth &&
 		id == other.id;
 }

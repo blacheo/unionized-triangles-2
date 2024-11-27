@@ -4,7 +4,7 @@
 #include <edge.h>
 
 TEST(SplitTriangleTests, NormalCase) {
-    Triangle t = Triangle({0,0}, {5,0}, {2,3}, 1, 1);
+    Triangle t = Triangle({0,0}, {5,0}, {2,3}, 1);
     Edge e{{4,3}, {3,1}};
 
     auto results = splitShape(std::vector<Point>{t.points[0], t.points[1], t.points[2]}, e);
@@ -46,4 +46,24 @@ TEST (SplitTriangleTests, Quadric) {
     auto results = splitShape(p,e);
 
     EXPECT_TRUE(results[0].size() > 2);
+}
+
+TEST(SplitTriangleTests, OnEdge1) {
+    std::vector<Point> t {{0,0}, {0,5}, {2,3}};
+    Edge e = Edge{{1,1}, {0,1}};
+
+    auto results = splitShape(t, e);
+
+    EXPECT_EQ(results[0].size(), 4);
+    EXPECT_EQ(results[1].size(), 3);
+}
+
+TEST(SplitTriangleTests, OnEdge2) {
+
+    std::vector<Point> t {{0,0}, {0,5}, {2,3}};
+    Edge e {{1,1}, {0,3}};
+
+    auto results = splitShape(t,e);
+
+    EXPECT_EQ(results[0].size(), 4);
 }

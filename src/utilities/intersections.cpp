@@ -4,6 +4,7 @@
 #include <triangle.h>
 #include <constants.h>
 #include <edge.h>
+#include <interpolate_z.h>
 
 std::optional<float> getB(std::optional<float> slope, Point p)
 {
@@ -138,7 +139,6 @@ std::optional<Point> intersection(const Edge &e1, const Edge &e2)
     {
         return {};
     }
-
     return candPoint;
 }
 void intersections(const Edge &e1, const TriangleEdges &te, std::vector<Point> &results)
@@ -172,6 +172,9 @@ std::vector<Point> intersections(const std::vector<Point> &points, const Edge &l
         auto cand = intersectionFirstSide(line, es[i]);
         if (cand.has_value())
         {
+            // add depth information
+            float z = interpolateZ(points, cand.value());
+            cand.value().z = z;
             result.push_back(cand.value());
         }
     }

@@ -4,7 +4,6 @@
 
 std::ostream &operator<<(std::ostream &os, const Triangle &t) {
 	return os << "Triangle: " << t.id
-			<< ", " << "Depth: " << t.depth
 			<< " {" << t.points[0] << ", " << t.points[1] << ", " << t.points[2] << "}";
 }
 /*

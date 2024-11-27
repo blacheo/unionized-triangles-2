@@ -6,13 +6,12 @@
 #include <triangle_edges.h>
 #include <intersections.h>
 #include <split_triangle.h>
-#include <triangulation.h>
+#include <convex_triangulation.h>
 
 std::vector<Triangle> unionizeTopAndBottom(const Triangle &top, const Triangle &bot)
 {
     std::vector<Triangle> result;
 
-    std::list<Point> intr;
     TriangleEdges topEdges = TriangleEdges(top);
 
     // keep track of relevant triangles
@@ -21,13 +20,16 @@ std::vector<Triangle> unionizeTopAndBottom(const Triangle &top, const Triangle &
     for (int i = 0; i < NB_TRIANGLE_SIDES; i++)
     {
         const Edge &e = topEdges.edges[i];
+
+        // index 0: On the "outside" of the edge 
+        // index 1: On the "inside" of the edge
         auto shapes = splitShape(relv, e);
         // split triangle if exists
         // currently relevant triangles
         // add these to result
         if (!shapes[0].empty())
         {
-            std::vector<Triangle> relvTriangles = triangulate(shapes[0], bot.depth, bot.id);
+            std::vector<Triangle> relvTriangles = convexTriangulation(shapes[0], bot.id);
             result.insert(result.end(), relvTriangles.begin(), relvTriangles.end());
         }
         // future relevant triangles
@@ -47,7 +49,7 @@ std::vector<Triangle> unionize(const Triangle &t1, const Triangle &t2)
     {
         return {t1, t2};
     }
-    if (t1.depth < t2.depth)
+    if (t1.points[0].z < t2.points[0].z)
     {
         return unionizeTopAndBottom(t1, t2);
     }

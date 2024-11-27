@@ -12,6 +12,10 @@ TEST(OrientationTests, ExampleCounterClockwiseTest)
     EXPECT_EQ(orientation(Point{0, 0}, Point{4, 4}, Point{1, 2}), Counterclockwise);
 }
 
+TEST (OrientationTests, Counterclockwise) {
+    EXPECT_EQ(orientation({0,0}, {5,0}, {2,3}), Counterclockwise);
+}
+
 TEST(OrientationTests, TestAll)
 {
     Point p1 = {3, 1};

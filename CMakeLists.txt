@@ -26,8 +26,6 @@ add_executable(
 	src/debug_utilities/mostly_equal.cpp
 	tests/unit_tests/simple_triangle_tests.cpp
 	tests/unit_tests/point_in_triangle_tests.cpp
-	tests/unit_tests/triangulation_tests.cpp
-	tests/unit_tests/ear_removal_tests.cpp
 	src/utilities/intersections.cpp
 	tests/union_tests.cpp
 	src/shapes/triangle.cpp
@@ -37,13 +35,10 @@ add_executable(
 	src/utilities/orientation.cpp
 	src/shapes/point.cpp
 	src/union.cpp
-	src/utilities/triangulation.cpp
 	src/utilities/pointList.cpp
 	tests/unit_tests/orientation_tests.cpp
 	tests/unit_tests/intersections_tests.cpp
 	src/data_structures/box.cpp
-	src/data_structures/quad_tree.cpp
-	tests/quad_tree_tests.cpp
 	tests/edge_union_cases.cpp
 	tests/unit_tests/convex_triangulation_tests.cpp
 	src/utilities/convex_triangulation.cpp
@@ -53,6 +48,9 @@ add_executable(
 	src/utilities/split_triangle.cpp
 	tests/unit_tests/orientation_tests.cpp
 	tests/union_neighbours_tests.cpp
+	src/debug_utilities/shift_triangle.cpp
+	src/utilities/interpolate_z.cpp
+	tests/unit_tests/interpolate_z_tests.cpp
 )
 
 include_directories(include)
