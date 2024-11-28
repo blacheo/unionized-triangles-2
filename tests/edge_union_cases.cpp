@@ -73,7 +73,12 @@ TEST(UnionEdgeTests, TriangleOnSide)
 
 	auto results = unionize(t1, t2);
 
-	std::vector<Triangle> expected;
+	std::vector<Triangle> expected = {
+		Triangle({0,0,1}, {0.666667,1,1}, {0,1,1}, 1),
+		Triangle({0,5,1}, {0,3,1}, {0.857143,1.28571,1}, 1),
+		Triangle({0,5,1}, {0.857143,1.28571,1}, {2,3,1}, 1),
+		Triangle({0,1,0}, {1,1,0}, {0,3,0}, 2)
+	};
 
 	EXPECT_EQ(results, expected);
 }

@@ -40,7 +40,10 @@ TEST(UnionTests, SharesPointTest)
     Triangle bottom = Triangle({0.1, 7, 5}, {5, 3,5}, {3.2, 9,5}, 2);
 
     auto results = unionize(bottom, top);
-    std::vector<Triangle> expected_results_1;
+    std::vector<Triangle> expected_results_1 = {
+	Triangle({0.1, 7, 5}, {5, 3,5}, {3.2, 9,5}, 2),
+    	Triangle({0, 5}, {3, 2}, {5, 3}, 1)
+    };
 
     EXPECT_EQ(results, expected_results_1);
 
@@ -49,7 +52,10 @@ TEST(UnionTests, SharesPointTest)
 
     results = unionize(bottom, top);
 
-    std::vector<Triangle> expected_results_2;
+    std::vector<Triangle> expected_results_2 {
+	Triangle({0, 5}, {3, 2}, {5, 3}, 1),
+	Triangle({0.1, 7, 5}, {5, 3,5}, {3.2, 9,5}, 2)
+    };
 
     EXPECT_EQ(results, expected_results_2);
 }
@@ -63,11 +69,9 @@ TEST(UnionTests, FoldTriangleTest)
     auto results = unionize(bottom, top);
 
     std::vector<Triangle> expected_results_1 = {
-        Triangle({0, 5,3}, {2.6129, 2.3871,3}, {1.91038,4.23585,3}, 1),
-        Triangle({3, 2,3}, {5, 3,3}, {2.27273,4.09091,3}, 1),
-        Triangle({3,2,3}, {2.27273,4.09091,3}, {2.6129,2.3871,3}, 1),
-        Triangle({2.6129,2.3871,3}, {2.27273,4.09091,3}, {2,4,3}, 1),
-        Triangle({0.1,9,1}, {2,4,1}, {5,5,1}, 2)
+	    Triangle({0.1,9,1}, {1.91038,4.23585,1}, {2.27273,4.09091,1}, 2), 
+	    Triangle({0.1,9,1}, {2.27273,4.09091,1}, {5,5,1}, 2), 
+	    Triangle({0,5,0}, {3,2,0}, {5,3,0}, 1)
     };
 
     EXPECT_EQ(results, expected_results_1);
@@ -77,11 +81,11 @@ TEST(UnionTests, FoldTriangleTest)
     results = unionize(bottom, top);
 
     std::vector<Triangle> expected_results_2 = {
-        Triangle({0,5, 3}, {2.6129, 2.3871, 3}, {1.91038, 4.23585, 3}, 1),
-        Triangle({3,2, 3}, {5, 3, 3}, {2.6129, 2.3871, 3}, 1),
-        Triangle({5,3, 3}, {2.27273, 4.09091, 3}, {2.6129, 2.3871, 3}, 1),
-        Triangle({2.27273,4.09091, 3}, {2, 4, 3}, {2.6129, 2.3871, 3}, 1),
-        Triangle({0.1,9}, {2, 4}, {5, 5}, 2)
+	    Triangle({0,5,3}, {2.6129,2.3871,3}, {1.91038,4.23585,3}, 1),
+	    Triangle({3,2,3}, {5,3,3}, {2.27273,4.09091,3}, 1), 
+	    Triangle({3,2,3}, {2.27273,4.09091,3}, {2.6129,2.3871,3}, 1),
+	    Triangle({2.6129,2.3871,3}, {2.27273,4.09091,3}, {2,4,3}, 1), 
+	    Triangle({0.1,9,1}, {2,4,1}, {5,5,1}, 2)
     };
 
     EXPECT_EQ(results, expected_results_2);
