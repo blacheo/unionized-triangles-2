@@ -4,11 +4,11 @@
 #include <intersections.h>
 
 TEST(ContourizeTest, Simple) {
-	std::vector<Point> points{{0,0}, {0,5}, {2, 3}};
+	std::vector<Point> points{{0,0}, {5,0}, {2, 3}};
 
 	auto result = contourize(points);
 
-	std::vector<Point> expected{{0,0}, {0,5}, {2, 3}};
+	std::vector<Point> expected{{0,0}, {5,0}, {2, 3}};
 	EXPECT_EQ(result, expected);
 }
 

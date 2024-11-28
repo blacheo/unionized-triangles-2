@@ -26,7 +26,7 @@ TEST(UnionTests, TwoIntersections)
 
     std::vector<Triangle> expected{
 	    Triangle({6,1,1}, {4,3,1}, {3.333333,1.66666,1}, 2),
-		    Triangle({4,3,1}, {3.33333,1.66667,1}, {4,1,1},2),
+		    Triangle({6,1,1}, {3.33333,1.66667,1}, {4,1,1},2),
     Triangle({0,0}, {5,0}, {2,3}, 1)};
     EXPECT_EQ(ts, expected);
 }

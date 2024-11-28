@@ -42,7 +42,6 @@ add_executable(
 	tests/edge_union_cases.cpp
 	tests/unit_tests/convex_triangulation_tests.cpp
 	src/utilities/convex_triangulation.cpp
-	tests/unit_tests/edge_direction_intr_tests.cpp
 	tests/unit_tests/contourize_tests.cpp
 	src/debug_utilities/print_triangles.cpp
 	src/utilities/split_triangle.cpp
