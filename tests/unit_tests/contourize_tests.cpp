@@ -12,6 +12,11 @@ TEST(ContourizeTest, Simple) {
 	EXPECT_EQ(result, expected);
 }
 
+TEST (ContourizeTest, Collinear) {
+	std::vector<Point> points {{2,3,5}, {0,0,5}, {2.5,2.5,5}, {-0,0,5}};
+	auto result = contourize(points);
+	
+}
 
 TEST(ContourizeTest, Triangle) {
 	std::vector<Point> points{{3,1}, {4,1}, {3.33333, 1.6666}};

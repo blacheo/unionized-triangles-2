@@ -7,9 +7,15 @@
 #include <intersections.h>
 #include <split_triangle.h>
 #include <convex_triangulation.h>
+#include <orientation.h>
 
 std::vector<Triangle> unionizeTopAndBottom(const Triangle &top, const Triangle &bot)
 {
+    // degenerate line / point case
+    if (orientation(top) == Collinear) {
+        return {bot, top};
+    }
+
     std::vector<Triangle> result;
 
     TriangleEdges topEdges = TriangleEdges(top);

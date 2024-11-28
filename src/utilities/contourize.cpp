@@ -41,7 +41,7 @@ std::vector<Point> contourize(const std::vector<Point> &points) {
     // infinite loop detection
     int seen = 0;
 
-    while (!candidates.empty()) {
+    while (candidates.size() > 1) {
         // detect infinite loop
         if (seen >= candidates.size()) {
             throw ContourizeException();
@@ -59,5 +59,7 @@ std::vector<Point> contourize(const std::vector<Point> &points) {
             seen++;
         }
     }
+
+    result.push_back(candidates.front());
     return result;
 }

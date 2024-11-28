@@ -39,7 +39,9 @@ INSTANTIATE_TEST_SUITE_P(EdgeUnionTests, InstantiateUnionEdgeTests, testing::Val
 																		// Point on edge of triangle
 																		UnionParams{Triangle({0, 0, 6}, {5, 0, 6}, {2, 3, 6}, 1), Triangle({0, 2, 3}, {0, 2, 3}, {0, 2, 3}, 2), {Triangle({0, 0, 6}, {5, 0, 6}, {2, 3, 6}, 1), Triangle({0, 2, 3}, {0, 2, 3}, {0, 2, 3}, 2)}},
 																		// Point on vertex of triangle
-																		UnionParams{Triangle({0, 0, 2}, {5,0,2}, {2,3,2}, 1), Triangle({0,0,0}, {0,0,0}, {0,0,0}, 2), {Triangle({0, 0, 2}, {5,0,2}, {2,3,2}, 1), Triangle({0,0,0}, {0,0,0}, {0,0,0}, 2)}}
+																		UnionParams{Triangle({0, 0, 2}, {5,0,2}, {2,3,2}, 1), Triangle({0,0,0}, {0,0,0}, {0,0,0}, 2), {Triangle({0, 0, 2}, {5,0,2}, {2,3,2}, 1), Triangle({0,0,0}, {0,0,0}, {0,0,0}, 2)}},
+																		// Line and Triangle
+																		UnionParams{Triangle({0,0,5}, {5,0,5}, {2,3,5}, 1), Triangle({0,0,0}, {1,1,0}, {6,6,0}, 2), {Triangle({0,0,5}, {5,0,5}, {2,3,5}, 1), Triangle({0,0,0}, {1,1,0}, {6,6,0}, 2)}}
 																		));
 
 TEST(UnionEdgeTests, TriangleVertexOnEdge)
