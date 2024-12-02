@@ -1,26 +1,20 @@
 #include <interpolate_z.h>
 #include <limits>
 #include <point.h>
+#include <edge.h>
 #include <cmath>
 
+float dist2D(const Point &p) {
+	return sqrt(p.x * p.x + p.y * p.y);
+}
 
-float interpolateZ(const std::vector<Point> &shape, const Point &p) {
-    // create direction vectors
-    const Point v1 = -(shape[0] - shape[1]);
-    const Point v2 = -(shape[0] - shape[2]);
+float interpolateZ(const Edge &e, const Point &p) {
+	const float p1Dist = dist2D(e.p1);
+	const float p2Dist = dist2D(e.p2);
 
-    const Point &origin = shape[0];
+	const float b = (p2Dist * e.p1.z - p1Dist * e.p2.z) / (p2Dist - p1Dist);
+	
+	const float m = (e.p2.z - b) / p2Dist;
 
-    float t = (p.y * v1.x - origin.y * v1.x - p.x * v1.y + origin.x * v1.y) / (v1.x * v2.y - v1.y * v2.x);
-    float s = (p.y - origin.y - t * v2.y) / v1.y;
-
-    if (s == - std::numeric_limits<float>::infinity() || std::isnan(s)) {
-        s = 0;
-    }
-
-    if (t == - std::numeric_limits<float>::infinity() || std::isnan(t)) {
-       t = 0; 
-    }
-
-    return origin.z + v1.z * s + v2.z * t;
+	return m * dist2D(p) + b;
 }

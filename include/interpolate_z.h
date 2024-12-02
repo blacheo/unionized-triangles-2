@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
 struct Point;
+struct Edge;
 
-float interpolateZ(const std::vector<Point> &shape, const Point &p);
+float interpolateZ(const Edge &e, const Point &p);
