@@ -173,7 +173,7 @@ std::vector<Point> intersections(const std::vector<Point> &points, const Edge &l
         if (cand.has_value())
         {
             // add depth information
-            float z = interpolateZ(points, cand.value());
+            float z = interpolateZ(es[i], cand.value());
             cand.value().z = z;
             result.push_back(cand.value());
         }
