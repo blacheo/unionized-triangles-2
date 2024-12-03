@@ -11,10 +11,15 @@ float dist2D(const Point &p) {
 float interpolateZ(const Edge &e, const Point &p) {
 	const float p1Dist = dist2D(e.p1);
 	const float p2Dist = dist2D(e.p2);
+    const float pDist = dist2D(p);
 
-	const float b = (p2Dist * e.p1.z - p1Dist * e.p2.z) / (p2Dist - p1Dist);
-	
-	const float m = (e.p2.z - b) / p2Dist;
+    if (p1Dist - p2Dist == 0) {
+        return e.p1.z;
+    }
 
-	return m * dist2D(p) + b;
+    const float m = (e.p1.z - e.p2.z) / (p1Dist - p2Dist);
+    const float b = e.p1.z - p1Dist * m;
+
+
+	return m * pDist + b;
 }

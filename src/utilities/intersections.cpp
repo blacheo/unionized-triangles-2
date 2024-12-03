@@ -62,6 +62,8 @@ std::optional<Point> intersectionFirstSide(const Edge &e1, const Edge &e2) {
     auto candPoint = intersection(e1, e2);
 
     if (candPoint.has_value() && withinEdge(e2, candPoint.value())) {
+        float z = interpolateZ(e2, candPoint.value());
+        candPoint.value().z = z;
         return candPoint;
     }
     return {};
@@ -172,9 +174,6 @@ std::vector<Point> intersections(const std::vector<Point> &points, const Edge &l
         auto cand = intersectionFirstSide(line, es[i]);
         if (cand.has_value())
         {
-            // add depth information
-            float z = interpolateZ(es[i], cand.value());
-            cand.value().z = z;
             result.push_back(cand.value());
         }
     }
