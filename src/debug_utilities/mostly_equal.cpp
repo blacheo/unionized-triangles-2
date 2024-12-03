@@ -2,14 +2,16 @@
 #include <point.h>
 #include <triangle.h>
 
+#define DEBUG_EPSILON 0.0001
+
 bool mostlyEqual(float a, float b)
 {
-    return abs(a - b) < 0.0001;
+    return abs(a - b) < DEBUG_EPSILON;
 }
 
 bool mostlyEqual(const Point &a, const Point &b)
 {
-    return mostlyEqual(a.x, b.x) && mostlyEqual(a.y, b.y);
+    return mostlyEqual(a.x, b.x) && mostlyEqual(a.y, b.y) && mostlyEqual(a.z, b.z);
 }
 
 // mostly equal
