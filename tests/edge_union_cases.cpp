@@ -2,38 +2,11 @@
 #include <union.h>
 #include <triangle.h>
 #include <orientation.h>
+#include "union_tests.h"
 
-struct UnionParams
-{
-	Triangle t1;
-	Triangle t2;
-	std::vector<Triangle> expected;
-};
 
-std::ostream &operator<<(std::ostream &os, const UnionParams &u) {
-	os << u.t1 << "|" << u.t2;
-	return os;
-}
 
-class InstantiateUnionEdgeTests : public testing::TestWithParam<UnionParams>
-{
-};
-
-TEST_P(InstantiateUnionEdgeTests, UnionTest)
-{
-	const Triangle &t1 = GetParam().t1;
-	const Triangle &t2 = GetParam().t2;
-	auto expected = GetParam().expected;
-
-	ASSERT_NE(orientation(t1), Clockwise);
-	ASSERT_NE(orientation(t2), Clockwise);
-
-	auto result = unionize(t1, t2);
-
-	EXPECT_EQ(result, expected);
-}
-
-INSTANTIATE_TEST_SUITE_P(EdgeUnionTests, InstantiateUnionEdgeTests, testing::Values(
+INSTANTIATE_TEST_SUITE_P(EdgeUnionTests, InstantiateUnionTests, testing::Values(
 																		// Point on top of triangle
 																		UnionParams{Triangle({0, 0, 4}, {5, 0, 4}, {2, 3, 4}, 1), Triangle({1, 1, 0}, {1, 1, 0}, {1, 1, 0}, 2), {Triangle({0, 0, 4}, {5, 0, 4}, {2, 3, 4}, 1), Triangle({1, 1, 0}, {1, 1, 0}, {1, 1, 0}, 2)}},
 																		// Point on edge of triangle
@@ -82,3 +55,4 @@ TEST(UnionEdgeTests, TriangleOnSide)
 
 	EXPECT_EQ(results, expected);
 }
+
